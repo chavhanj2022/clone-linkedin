@@ -1,12 +1,21 @@
 <div class="col-lg-10 mx-auto mt-4">
+  <div class="card mt-4 mb-4">
+    <div class="card-body">
+      <h3 class="text-center mb-3">Search Professional accross the world!</h3>
+      <%= search_form_for @q, url: root_path do |f| %>
+        <div class="input-group mb-3">
+          <%= f.search_field :country_or_city_cont, placeholder: "Search by Country or City", class: "form-control", area: {label: "Search by Country or City", describedby: "button-search"}%>
+          <%= f.submit "Search", class: "btn btn-primary", id: "button-search"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <div class="row mt-4 mb-4">
     <% @users.each do |user|%>
       <div class="col-lg-3 mb-3 mt-3">
         <div class="card text-center shadow" >
           <div class="card-body">
-            <%= image_tag 'dummy_user.jpg', style: "width: 150px;
-    border-radius: 50%;
-    border: 2px solid #0d6efd;", class:"mb-3"%>
+            <%= image_tag 'dummy_user.jpg', style: "width: 150px; border-radius: 50%; border: 2px solid #0d6efd;", class:"mb-3"%>
             <div class="user-info">
               <h5><%= user.name%></h5>
               <p class="lead"><%= user.profile_title%></p>
