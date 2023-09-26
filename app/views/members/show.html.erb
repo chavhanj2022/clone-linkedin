@@ -5,11 +5,7 @@
         <%= image_tag "dummy_user", class:"image-fluid", style: "width: 150px; border: 2px solid #0d6efd;"%>
       </div>
       <div class="col-lg-8">
-        <div class="card-boy">
-          <h3 class="fw-bold"><%= @user.name%></h3>
-          <p class="lead"><%= @user.profile_title%></p>
-          <p class="lead text-primary"><%= @user.address%></p>
-        </div>
+        <%= render 'user_profile', user: @user%>
       </div>
     </div>
   </div>

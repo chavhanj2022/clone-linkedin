@@ -13,4 +13,16 @@ class MembersController < ApplicationController
       end
     end
   end
+
+  def edit_profile
+    
+  end
+
+  def update_profile
+    respond_to do |format|
+      if current_user.update(first_name: params[:user][:first_name], last_name: params[:user][:last_name], profile_title: params[:user][:profile_title], city: params[:user][:city], state: params[:user][:state], state: params[:user][:state], country: params[:user][:country], pincode: params[:user][:pincode])
+        format.turbo_stream {render turbo_stream: turbo_stream.replace('user_profile', partial: 'members/user_profile', locals: {user: current_user})}
+      end
+    end
+  end
 end
