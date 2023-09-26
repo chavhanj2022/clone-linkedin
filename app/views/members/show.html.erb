@@ -24,9 +24,11 @@
         <div class="col-lg-6">
           <div class="d-flex justify-content-end">
             <%# <h3 class="">About</h3> %>
-            <%= link_to edit_memeber_description_path(@user),  data:{controller: "edit-user-description"} do%>
-              <i class="bi bi-pencil"></i>
-            <% end%>
+            <% if user_signed_in? && current_user == @user%>
+              <%= link_to edit_memeber_description_path,  data:{controller: "edit-user-description"} do%>
+                <i class="bi bi-pencil"></i>
+              <% end%>
+            <% end %>
           </div>
         </div>
       </div>
