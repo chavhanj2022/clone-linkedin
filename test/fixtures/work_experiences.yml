@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_data: 2023-09-28
+  end_data: 2023-09-28
+  job_title: MyString
+  employment_type: MyString
+  location_tye: MyString
+  currently_working_here: false
+  description: MyText
+  company: MyString
+  user: one
+
+two:
+  start_data: 2023-09-28
+  end_data: 2023-09-28
+  job_title: MyString
+  employment_type: MyString
+  location_tye: MyString
+  currently_working_here: false
+  description: MyText
+  company: MyString
+  user: two
