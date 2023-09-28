@@ -1,7 +1,7 @@
 <div class="card-body" id="user_profile">
   <% if user_signed_in? && current_user == user%>
     <div class="d-flex justify-content-end">
-      <%= link_to edit_profile_path,  data:{controller: "edit-profile"} do%>
+      <%= link_to edit_profile_path,  data:{controller: "bs-modal-form"} do%>
         <i class="bi bi-pencil"></i>
       <% end%>
     </div>
