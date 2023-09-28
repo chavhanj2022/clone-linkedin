@@ -1,3 +1,4 @@
 <%= turbo_stream.replace 'remote_modal' do %>
-  <%= render 'user_profile_modal' %>
+  <%#= render 'user_profile_modal' %>
+  <%= render 'shared/turbo_model', modal_title: "Edit Personal Details", form_partial: "members/user_profile_modal" %>
 <% end  %>
