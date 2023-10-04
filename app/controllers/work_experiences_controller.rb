@@ -1,6 +1,6 @@
 class WorkExperiencesController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_work_experience, only: %i[edit update destroy]
+    before_action :set_work_experiences, only: %i[edit update destroy]
 
     def new
         @work_experience = current_user.work_experiences.new
@@ -19,7 +19,15 @@ class WorkExperiencesController < ApplicationController
 
     def edit; end
 
-    def update; end
+    def update
+        respond_to do |format|
+            if @work_experience.update(work_experience_params)
+                format.turbo_stream { render turbo_stream: turbo_stream.replace("work_experience_item_#{@work_experience.id}", partial: 'work_experiences/work_experience', locals: {work_experience: @work_experience}) }
+            else
+                format.turbo_stream { render turbo_stream: turbo_stream.replace('remote_modal', partial: 'shared/turbo_model', locals: {form_partial: 'work_experiences/form', modal_title: 'Edit work experience'})}
+            end
+        end
+    end
 
     def destroy; end
 
