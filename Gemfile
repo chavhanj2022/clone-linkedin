@@ -57,6 +57,9 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem 'pry'
+  gem 'faker'
+  gem 'htmlbeautifier'
+  gem 'rubocop'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -74,9 +77,8 @@ end
 
 gem 'devise'
 gem 'pg'
-gem 'faker'
+
 gem 'kaminari'
 gem 'ransack'
 gem 'cssbundling-rails'
-gem 'htmlbeautifier'
-gem 'rubocop'
+gem "dockerfile-rails", "~> 1.5"
