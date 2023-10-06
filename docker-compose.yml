@@ -31,5 +31,3 @@ services:
 volumes:
   postgres_data: {}
   app-storage: {}
-networks:
-  demo_default:
