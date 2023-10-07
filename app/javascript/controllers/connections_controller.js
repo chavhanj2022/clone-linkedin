@@ -11,13 +11,13 @@ export default class extends Controller {
     console.log("initialize")
   }
 
-  prepareConnectionParams(){
+  prepareConnectionParams() {
     console.log("prepareConnectionParams");
     event.preventDefault()
     this.url = this.element.getAttribute("href")
-    console.log(this);
+    console.log(document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
     const element = this.connectionTarget
-    
+
     const requesterId = element.dataset.requesterId
     const connectedId = element.dataset.connectedId
     const connectionBody = new FormData()
@@ -29,11 +29,12 @@ export default class extends Controller {
       method: "POST",
       headers: {
         Accept: "text/vnd.turbo-stream.html",
-        'X-CSRFToken': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        // 'X-CSRFToken': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
       },
       body: connectionBody
     })
-    .then(resp => resp.text())
-    .then(html => Turbo.renderStreamMessage(html))
+      .then(resp => resp.text())
+      .then(html => Turbo.renderStreamMessage(html))
   }
 }
