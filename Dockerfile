@@ -1,7 +1,7 @@
 # Make sure it matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.2.0
 FROM ruby:$RUBY_VERSION
-
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 # Install libvips for Active Storage preview support
 RUN apt-get update -qq && \
     apt-get install -y build-essential libvips bash bash-completion libffi-dev tzdata postgresql nodejs npm yarn && \
