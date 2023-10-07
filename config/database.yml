@@ -8,7 +8,6 @@ default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   encoding: unicode
-  timeout: 5000
   host: <%= ENV['POSTGRES_HOST']%>
   port: 5432
   
@@ -16,8 +15,8 @@ default: &default
 development:
   <<: *default
   database: linkedin_development
-  username: jitendra
-  password: jitendra
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -25,6 +24,9 @@ development:
 test:
   <<: *default
   database: linkedin_test
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
 
 production:
   <<: *default
