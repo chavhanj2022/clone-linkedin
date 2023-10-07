@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   patch 'update_profile', to: 'members#update_profile', as: 'update_profile'
   
   resources :work_experiences
+  resources :connections
 
 end

@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 
-  has_many :work_experiences
+  has_many :work_experiences, dependent: :destroy
+  has_many :connections, dependent: :destroy
 
   PROFILE_TITLE = [
     "Sr RoR Developer",
@@ -29,5 +30,9 @@ class User < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     []
+  end
+
+  def checked_if_already_connected?(current_user, user)
+    current_user != user && !current_user.connections.pluck(:connected_user_id).include?(user.id)
   end
 end
