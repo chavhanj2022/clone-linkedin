@@ -27,4 +27,9 @@
       <%= link_to pluralize(@connections.count, 'connection'), member_connections_path(user.id)%>
     </div>
   <% end %>
+  <% if current_user != @user && @mutual_connections.present?%>
+    <div id="mutual-connection-count">
+      <%= link_to pluralize(@mutual_connections.count, ' mutual connection'), "javascript:void(0)"%>
+    </div>
+  <% end %>
 </div>
