@@ -1,6 +1,12 @@
 class ConnectionsController < ApplicationController
     before_action :authenticate_user!
 
+    def index
+        @requested_connections = Connection.includes(:requested).where(user_id: current_user.id)
+        # binding.pry
+        @received_connections = Connection.includes(:received).where(connected_user_id: current_user.id)
+    end
+
     def create 
         @connection = current_user.connections.new(connection_params)
         @connector = User.find(connection_params[:connected_user_id])
