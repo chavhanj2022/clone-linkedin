@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   patch 'update_description', to: 'members#update_description', as: 'update_member_description'
   get 'edit_profile', to: 'members#edit_profile', as: 'edit_profile'
   patch 'update_profile', to: 'members#update_profile', as: 'update_profile'
+  get 'member-connections/:id', to: 'members#connections', as: 'member_connections'
   
   resources :work_experiences
   resources :connections
