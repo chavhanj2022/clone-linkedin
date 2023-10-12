@@ -32,7 +32,11 @@ class User < ApplicationRecord
     []
   end
 
+  def my_connection(user)
+    Connection.where("(user_id = ? AND connected_user_id = ?) OR (user_id = ? AND connected_user_id = ?)", user.id, id, id, user.id)
+  end
+
   def checked_if_already_connected?(current_user, user)
-    current_user != user && !current_user.connections.pluck(:connected_user_id).include?(user.id)
+    self != user && !my_connection(user).present?
   end
 end

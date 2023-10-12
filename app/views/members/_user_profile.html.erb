@@ -13,11 +13,11 @@
     <% if user_signed_in? %>
       <% if current_user.checked_if_already_connected?(current_user, user)%>
         <%= link_to "Connect", connections_path, class: 'btn btn-primary', data:{controller: 'connections', turbo_method: :post, connections_target: 'connection', requester_id: current_user.id, connected_id: user.id}%>
-      <% elsif status_of_user_connection_status(current_user, user) == "pending"%>
+      <% elsif status_of_user_connection_status( user) == "pending"%>
         <%= render 'connections/create', connector: user%>
-      <% elsif status_of_user_connection_status(current_user, user)  == "accepted"%>
-        <button class="btn btn-success">Accepted</button>
-      <% elsif status_of_user_connection_status(current_user, user)  == "rejected"%>
+      <% elsif status_of_user_connection_status(user)  == "accepted"%>
+        <button class="btn btn-success">Connected</button>
+      <% elsif status_of_user_connection_status(user)  == "rejected"%>
         <button class="btn btn-danger">Rejected</button>
       <% end %>
     <% end%>

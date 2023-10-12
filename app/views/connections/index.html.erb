@@ -41,7 +41,7 @@
                 <div class="card-body">
                   <%= image_tag "dummy_user.jpg", class: "img-fluid mb-1"%>
                   <div style="min-height:100px">
-                    <%= link_to member_path(connection.requested), style: "text-decoration: none", class: "text-primary", target:"_blank" do%>
+                    <%= link_to member_path(connection.received), style: "text-decoration: none", class: "text-primary", target:"_blank" do%>
                       <p class="lead fw-bold"><%= connection.received.name%></p>
                     <% end%>
                   </div>
