@@ -27,6 +27,7 @@ class MembersController < ApplicationController
   end
 
   def connections
+    # binding.pry
     @user = User.find(params[:id])
     total_users =  if params[:mutual_connections].present?
                           User.where(id: current_user.mutual_connected_ids(@user))
