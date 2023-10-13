@@ -39,4 +39,8 @@ class User < ApplicationRecord
   def checked_if_already_connected?(current_user, user)
     self != user && !my_connection(user).present?
   end
+
+  def mutual_connected_ids(user)
+    self.connected_user_ids.intersection(user.connected_user_ids)
+  end
 end
