@@ -10,8 +10,26 @@
   <p class="lead"><%= user.profile_title%></p>
   <p class="lead text-primary"><%= user.address%></p>
   <div id="user-connection-status">
-    <% if user_signed_in? && current_user.checked_if_already_connected?(current_user, user)%>
-      <%= link_to "Connect", connections_path, class: 'btn btn-primary', data:{controller: 'connections', turbo_method: :post, connections_target: 'connection', requester_id: current_user.id, connected_id: user.id}%>
+    <% if user_signed_in? %>
+      <% if current_user.checked_if_already_connected?(current_user, user)%>
+        <%= link_to "Connect", connections_path, class: 'btn btn-primary', data:{controller: 'connections', turbo_method: :post, connections_target: 'connection', requester_id: current_user.id, connected_id: user.id}%>
+      <% elsif status_of_user_connection_status( user) == "pending"%>
+        <%= render 'connections/create', connector: user%>
+      <% elsif status_of_user_connection_status(user)  == "accepted"%>
+        <button class="btn btn-success">Connected</button>
+      <% elsif status_of_user_connection_status(user)  == "rejected"%>
+        <button class="btn btn-danger">Rejected</button>
+      <% end %>
     <% end%>
   </div>
+  <% if @connections.present?%>
+    <div id="connection-count">
+      <%= link_to pluralize(@connections.count, 'connection'), member_connections_path(user.id)%>
+    </div>
+  <% end %>
+  <% if current_user != @user && @mutual_connections.present? && @mutual_connections.count > 0%>
+    <div id="mutual-connection-count">
+      <%= link_to pluralize(@mutual_connections.count, ' mutual connection'), member_connections_path(user, mutual_connections: true)%>
+    </div>
+  <% end %>
 </div>
