@@ -1,0 +1,7 @@
+RAILS_ENV=production
+POSTGRES_HOST=clone-db
+POSTGRES_DB=linkedin_production
+POSTGRES_USER=jitendra
+POSTGRES_PASSWORD=jitendra
+RAILS_MASTER_KEY=7f2bfdfae9b3ba5372cc9c39ae0db01b
+
