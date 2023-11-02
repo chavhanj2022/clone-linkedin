@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
+  host: <%= ENV["POSTGRES_HOST"] %>
   username: <%= ENV["POSTGRES_USER"] %>
   password: <%= ENV["POSTGRES_PASSWORD"] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -9,10 +9,12 @@ default: &default
 development:
   <<: *default
   database: rails_7_with_docker_development
+  port: 5432
 
 production:
   <<: *default
   database: rails_7_with_docker_production
+  port: 5432
 
 test:
   <<: *default

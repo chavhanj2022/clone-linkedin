@@ -16,6 +16,7 @@ services:
     volumes:
       - .:/docker/app # add our local code to dockerfile
     environment:
+      POSTGRES_HOST: postgres
       RAILS_ENV: development
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
