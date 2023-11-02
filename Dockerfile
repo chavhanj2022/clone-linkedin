@@ -1,6 +1,6 @@
 FROM ruby:3.0-bullseye as base
 
-RUN apt-get update -qq && apt-get install -y curl gnupg gcc g++ make
+RUN apt-get update -qq && apt-get install -y curl gnupg gcc g++ make nano
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x  | bash -
 
@@ -16,9 +16,11 @@ RUN gem install bundler
 
 COPY Gemfile* ./
 
-RUN bundle install
+RUN RAILS_ENV=production bundle install
 
-# RUN RAILS_ENV=production bundle exec rails assets:precompile
+RUN RAILS_ENV=production rails db:create db:migrate
+
+RUN RAILS_ENV=production bundle exec rails assets:precompile
 
 ADD . /docker/app
 

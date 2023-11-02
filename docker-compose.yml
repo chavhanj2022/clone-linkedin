@@ -10,18 +10,22 @@ services:
     # env_file:
     #   - ./env/postgres.env # you can also define env variables like this.
   rails:
-    build: ./ 
-    ports:
-      - '3000:3000'
-    volumes:
-      - .:/docker/app # add our local code to dockerfile
     environment:
-      POSTGRES_HOST: postgres
+      POSTGRES_HOST: db
       RAILS_ENV: production
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       RAILS_MASTER_KEY: 8777c8e7e7d5bc6a891c7e7260a2f1d0
       secret_key_base: b09790ac86f08bb54234861cb7fb99c2ddb44acd8fc80df1597b76072e2d8e497983abe6770886008bfbcc16c8873b94de73e2a6b051426f73bd2d922349f7f7
+    
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/docker/app # add our local code to dockerfile
+    
     depends_on:
       - db  # add all dependant container
 
