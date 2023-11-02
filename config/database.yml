@@ -14,7 +14,6 @@ development:
 production:
   <<: *default
   database: rails_7_with_docker_production
-  port: 5432
 
 test:
   <<: *default
