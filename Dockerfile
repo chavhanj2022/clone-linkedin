@@ -16,16 +16,22 @@ RUN gem install bundler
 
 COPY Gemfile* ./
 
-RUN RAILS_ENV=production bundle install
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+RUN bundle install
+# RUN bundle exec rails assets:clobber
+# RUN bundle exec rails assets:precompile
 
-RUN RAILS_ENV=production rails db:create db:migrate
+# RUN RAILS_ENV=production bundle install
 
-RUN RAILS_ENV=production bundle exec rails assets:precompile
+# RUN RAILS_ENV=production rails db:create db:migrate
+
+# RUN RAILS_ENV=production bundle exec rails assets:precompile
 
 ADD . /docker/app
 
-ARG DEFAULT_PORT 3000
+ENTRYPOINT ["entrypoint.sh"]
 
-EXPOSE ${DEFAULT_PORT}
+EXPOSE 3000
 
-CMD [ "bundle","exec", "puma", "config.ru"] # CMD ["rails","server"] # you can also write like this.
+# CMD [ "bundle","exec", "puma", "config.ru"] # CMD ["rails","server"] # you can also write like this.
