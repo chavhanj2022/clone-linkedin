@@ -24,9 +24,9 @@ RUN chmod +x /usr/bin/entrypoint.sh
 
 RUN RAILS_ENV=production bundle install
 
-RUN RAILS_ENV=production rails db:create db:migrate
+# RUN RAILS_ENV=production rails db:create db:migrate
 
-RUN RAILS_ENV=production rails assets:precompile
+# RUN RAILS_ENV=production rails assets:precompile
 
 ADD . /docker/app
 
